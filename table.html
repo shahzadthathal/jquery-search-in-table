@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Jquery search in table</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>User listing</h2>
+  <p>(:)</p>  
+
+  <div class="form-group">
+    <label for="searchText">Search:</label>
+    <input type="text" class="form-control" id="searchText" name="searchText">
+  </div>
+
+
+  <table class="table your-class">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Muhammad</td>
+        <td>Shahzad</td>
+        <td>shahzad@example.com</td>
+      </tr>
+      <tr>
+        <td>Amir</td>
+        <td>Shahzad</td>
+        <td>amir@example.com</td>
+      </tr>
+      <tr>
+        <td>Zahoor</td>
+        <td>Ahmed</td>
+        <td>zahoor@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<script>
+
+$("#searchText").on("keyup", function() {    
+    var searchText = $(this).val();
+    $(".your-class").find("tbody tr").each(function (index) {
+        $row = $(this);
+        $row.show();
+        var found = false;
+        $row.find("td").each(function () {
+            var tdText = $(this).text();
+            if(tdText && tdText.search(searchText) >=0){
+                found = true;
+                return;
+            }
+        });
+        if (found === true) {
+            $row.show();
+        }
+        else {
+            $row.hide();
+        }
+  });
+});
+
+$("#transactionSearchInput").on("focus", function() {
+        $(this).animate({
+                width: '500px'
+        }, "slow");
+});
+
+$("#transactionSearchInput").on("blur", function() {
+         $(this).animate({
+                width: '200px'
+        });
+});
+
+</script>
+</body>
+</html>
