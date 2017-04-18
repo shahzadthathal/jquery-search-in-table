@@ -29,6 +29,7 @@
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
+        <th>Amount</th>
       </tr>
     </thead>
     <tbody>
@@ -36,16 +37,19 @@
         <td>Muhammad</td>
         <td>Shahzad</td>
         <td>shahzad@example.com</td>
+        <td><input type="text" name="amount" value="50" class="form-control"></td>
       </tr>
       <tr>
         <td>Amir</td>
         <td>Shahzad</td>
         <td>amir@example.com</td>
+        <td><input type="text" name="amount" value="80" class="form-control"></td>
       </tr>
       <tr>
         <td>Zahoor</td>
         <td>Ahmed</td>
         <td>zahoor@example.com</td>
+        <td><input type="text" name="amount" value="70" class="form-control"></td>
       </tr>
     </tbody>
   </table>
@@ -61,7 +65,14 @@ $("#searchText").on("keyup", function() {
         $row.show();
         var found = false;
         $row.find("td").each(function () {
-            var tdText = $(this).text().toLowerCase().trim();
+            $td = $(this);
+            var tdText = '';
+            if ($td.find('input').length) {
+                tdText = $td.find('input').val();
+            }
+            else{
+                tdText = $td.text().toLowerCase().trim();
+            }
             if(tdText && tdText.search(searchText) >=0){
                 found = true;
                 return;
