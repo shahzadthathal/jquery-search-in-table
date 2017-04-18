@@ -1,6 +1,5 @@
-# jquery-search-in-table
+# jquery search in table
 Custom function for Jquery search in table
 
+![Screenshot](Jquery search in table.png)
 
-
-![alt tag](https://raw.githubusercontent.com/shahzadthathal/jquery-search-in-table/Jquery search in table.png)
