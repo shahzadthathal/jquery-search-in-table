@@ -55,13 +55,13 @@
 <script>
 
 $("#searchText").on("keyup", function() {    
-    var searchText = $(this).val();
+    var searchText = $(this).val().toLowerCase().trim();
     $(".your-class").find("tbody tr").each(function (index) {
         $row = $(this);
         $row.show();
         var found = false;
         $row.find("td").each(function () {
-            var tdText = $(this).text();
+            var tdText = $(this).text().toLowerCase().trim();
             if(tdText && tdText.search(searchText) >=0){
                 found = true;
                 return;
