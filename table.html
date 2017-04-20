@@ -17,15 +17,19 @@
   <h2>User listing</h2>
   <p>(:)</p>  
 
+ 
   <div class="form-group">
     <label for="searchText">Search:</label>
     <input type="text" class="form-control" id="searchText" name="searchText">
   </div>
 
+  <button class="btn btn-primary pull-right">Perform Action</button>
+
 
   <table class="table your-class">
     <thead>
       <tr>
+        <th><input type="checkbox" class="chk-toggle-all"></th>
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
@@ -34,18 +38,21 @@
     </thead>
     <tbody>
       <tr>
+        <td><input type="checkbox" name="id[]" value="333"></td>
         <td>Muhammad</td>
         <td>Shahzad</td>
         <td>shahzad@example.com</td>
         <td><input type="text" name="amount" value="50" class="form-control"></td>
       </tr>
       <tr>
+        <td><input type="checkbox" name="id[]" value="555"></td>
         <td>Amir</td>
         <td>Shahzad</td>
         <td>amir@example.com</td>
         <td><input type="text" name="amount" value="80" class="form-control"></td>
       </tr>
       <tr>
+        <td><input type="checkbox" name="id[]" value="666"></td>
         <td>Zahoor</td>
         <td>Ahmed</td>
         <td>zahoor@example.com</td>
@@ -56,7 +63,31 @@
 </div>
 
 
+
 <script>
+
+var dataArr = [];
+$('.btn-primary').click(function(){
+   var checkedCheckboxes = $('.your-class tr:visible :checkbox:checked');
+   console.log("Total Selected Checkboxes:",checkedCheckboxes.length);
+    var i = 0;
+    $.each(checkedCheckboxes, function(index, input){       
+      var id = input.value;        
+      dataArr[i] = {};
+      dataArr[i]['id'] = id;
+      console.log(dataArr[i]);
+      i++;  
+    });
+});
+
+$('.chk-toggle-all').click(function() {
+  var checkedStatus = this.checked;
+  $('.your-class tbody tr:visible').find('td:first :checkbox')
+    .each(function() {
+      $(this).prop('checked', checkedStatus);
+    });
+});
+
 
 $("#searchText").on("keyup", function() {    
     var searchText = $(this).val().toLowerCase().trim();
