@@ -133,6 +133,7 @@ $('.btn-primary').click(function(){
 });
 
 $('.chk-toggle-all').click(function() {
+  //$('.your-class').find('input[type=checkbox]').prop('checked',false);
   var checkedStatus = this.checked;
   $('.your-class tbody tr:visible').find('td:first :checkbox')
     .each(function() {
