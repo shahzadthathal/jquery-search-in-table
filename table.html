@@ -18,13 +18,22 @@
   <p>(:)</p>  
 
  
+ <div class="row">
   <div class="form-group">
     <label for="searchText">Search:</label>
     <input type="text" class="form-control" id="searchText" name="searchText">
   </div>
+  <button class="btn btn-primary">Perform Checkbox Action</button>
+</div>
 
-  <button class="btn btn-primary pull-right">Perform Action</button>
-
+<div class="row">
+<button class="btn btn-success realtime-pbar">Realtime Progressbar</button>
+  <div class="progress">
+            <div id="bulk-action-progbar" class="progress-bar progress-bar-striped active" role="progressbar"
+          aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width:1%">           
+            </div>
+        </div>
+</div>
 
   <table class="table your-class">
     <thead>
@@ -65,6 +74,59 @@
 
 
 <script>
+
+$('.realtime-pbar').click(function(){
+  var percentComplete = 0;
+  $.ajax({
+    method: 'post',
+    url: 'yoururl',
+    data:{'name':'shahzad',email:'email@gmail.com'},
+    /*xhrFields: {
+        onprogress: function (e) {  
+          if (e.lengthComputable) {
+            percentComplete = (e.loaded / e.total) * 100;
+            percentComplete = percentComplete.toPrecision(3);
+            console.log('percentComplete',percentComplete);
+            $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
+                  $('#bulk-action-progbar').css("width",percentComplete+'%');
+          }
+        }
+    },*/
+    xhr: function(){
+      var xhr = new window.XMLHttpRequest();
+      //Upload progress
+      xhr.upload.addEventListener("progress", function(evt){
+        //console.log("in Upload progress");
+        if (evt.lengthComputable) {
+          percentComplete = (evt.loaded / evt.total);
+          percentComplete = percentComplete.toPrecision(3);
+          $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
+          $('#bulk-action-progbar').css("width",percentComplete+'%');
+
+        }
+      }, false);
+      //Download progress
+      xhr.addEventListener("progress", function(evt){
+        //console.log("in Download progress");
+        if (evt.lengthComputable) {
+          percentComplete = (evt.loaded / evt.total) * 100;
+          percentComplete = percentComplete.toPrecision(3);
+          $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
+          $('#bulk-action-progbar').css("width",percentComplete+'%');
+
+        }
+      }, false);
+      return xhr;
+    },
+    success: function (res) {
+        var obj = $.parseJSON(res);
+        console.log(obj)
+  }
+});
+});
+
+
+
 
 var dataArr = [];
 $('.btn-primary').click(function(){
