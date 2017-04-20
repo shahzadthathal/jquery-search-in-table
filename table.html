@@ -76,47 +76,37 @@
 <script>
 
 $('.realtime-pbar').click(function(){
+  $('#bulk-action-progbar').data("aria-valuenow",1);
+  $('#bulk-action-progbar').css("width",'1%');
   var percentComplete = 0;
   $.ajax({
     method: 'post',
     url: 'yoururl',
     data:{'name':'shahzad',email:'email@gmail.com'},
-    /*xhrFields: {
-        onprogress: function (e) {  
-          if (e.lengthComputable) {
-            percentComplete = (e.loaded / e.total) * 100;
-            percentComplete = percentComplete.toPrecision(3);
-            console.log('percentComplete',percentComplete);
-            $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
-                  $('#bulk-action-progbar').css("width",percentComplete+'%');
-          }
-        }
-    },*/
     xhr: function(){
-      var xhr = new window.XMLHttpRequest();
-      //Upload progress
-      xhr.upload.addEventListener("progress", function(evt){
-        //console.log("in Upload progress");
-        if (evt.lengthComputable) {
-          percentComplete = (evt.loaded / evt.total);
-          percentComplete = percentComplete.toPrecision(3);
-          $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
-          $('#bulk-action-progbar').css("width",percentComplete+'%');
+        var xhr = new window.XMLHttpRequest();
+        //Upload progress
+        xhr.upload.addEventListener("progress", function(evt){
+          //console.log("in Upload progress");
+          console.log("Upload Done");
+        }, false);
+        //Download progress
+        xhr.addEventListener("progress", function(e){
+          console.log("in Download progress");
+          if (e.lengthComputable) {
+            //percentComplete = (e.loaded / e.total) * 100;
+            percentComplete = parseInt( (e.loaded / e.total * 100), 10);
+            console.log(percentComplete);
+            $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
+            $('#bulk-action-progbar').css("width",percentComplete+'%');
 
-        }
-      }, false);
-      //Download progress
-      xhr.addEventListener("progress", function(evt){
-        //console.log("in Download progress");
-        if (evt.lengthComputable) {
-          percentComplete = (evt.loaded / evt.total) * 100;
-          percentComplete = percentComplete.toPrecision(3);
-          $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
-          $('#bulk-action-progbar').css("width",percentComplete+'%');
-
-        }
-      }, false);
-      return xhr;
+          }
+          else{
+             console.log("Length not computable.");
+             console.log("If lengthComputable is false within the XMLHttpRequestProgressEvent, that means the server never sent a Content-Length header in the response.Solution for PHP: $startTime = time(); your code or sleep(10); $endTime = time() - $startTime; header('Content-Length: '.strlen($endTime)); now it will work")
+          }
+        }, false);
+        return xhr;
     },
     success: function (res) {
         var obj = $.parseJSON(res);
