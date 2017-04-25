@@ -124,6 +124,11 @@ $('.chk-toggle-all').click(function() {
 $(function(){
 
 
+//Remove a specific row from table with data attribute
+//var $row = $('.transaction-list tbody tr[data-id="' + v.$id + '"]');
+//$row.remove();
+
+
   /*Hide and show div code start*/
       $('.hide-element').click(function(){
       $('.panel-info').animate({
