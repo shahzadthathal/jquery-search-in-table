@@ -1,147 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Jquery search in table</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-  	.form-control{width: 200px;}
-  </style>
-</head>
-<body>
+    <head>
+        <title>
+            Jquery search in table
+        </title>
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
+                    </script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                    </script>
+                    <style>
+                        .form-control{width: 200px;}
+                    </style>
+                </link>
+            </meta>
+        </meta>
+    </head>
+    <body>
+        <div class="container">
+            <h2>
+                User listing
+            </h2>
+            <p>
+                (:)
+            </p>
+            <div class="row">
+                <div class="form-group">
+                    <label for="searchText">
+                        Search:
+                    </label>
+                    <input class="form-control" id="searchText" name="searchText" type="text">
+                    </input>
+                </div>
+                <button class="btn btn-primary">
+                    Perform Checkbox Action
+                </button>
+            </div>
+            <div class="row">
+                <button class="btn btn-success realtime-pbar">
+                    Realtime Progressbar
+                </button>
+                <div class="progress">
+                    <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="1" class="progress-bar progress-bar-striped active" id="bulk-action-progbar" role="progressbar" style="width:1%">
+                    </div>
+                </div>
+            </div>
+            <table class="table your-class">
+                <thead>
+                    <tr>
+                        <th>
+                            <input class="chk-toggle-all" type="checkbox"/>
+                        </th>
+                        <th>
+                            Firstname
+                        </th>
+                        <th>
+                            Lastname
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input name="id[]" type="checkbox" value="333"/>
+                        </td>
+                        <td>
+                            Muhammad
+                        </td>
+                        <td>
+                            Shahzad
+                        </td>
+                        <td>
+                            shahzad@example.com
+                        </td>
+                        <td>
+                            <input class="form-control" name="amount" type="text" value="50"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="id[]" type="checkbox" value="555"/>
+                        </td>
+                        <td>
+                            Amir
+                        </td>
+                        <td>
+                            Shahzad
+                        </td>
+                        <td>
+                            amir@example.com
+                        </td>
+                        <td>
+                            <input class="form-control" name="amount" type="text" value="80"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="id[]" type="checkbox" value="666"/>
+                        </td>
+                        <td>
+                            Zahoor
+                        </td>
+                        <td>
+                            Ahmed
+                        </td>
+                        <td>
+                            zahoor@example.com
+                        </td>
+                        <td>
+                            <input class="form-control" name="amount" type="text" value="70"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-sm-6">
+            <button type="button" class="btn btn-info btn-sm show-element" style="display: none;">
+            <span>Show Clipboard</span>
+          </button>
 
-<div class="container">
-  <h2>User listing</h2>
-  <p>(:)</p>  
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                    <button type="button" class="close pull-right hide-element">
+                          <span>&minus;</span>
+                        </button>
+                        <h1>Copy text to clipboard</h1>
+                        
 
- 
- <div class="row">
-  <div class="form-group">
-    <label for="searchText">Search:</label>
-    <input type="text" class="form-control" id="searchText" name="searchText">
-  </div>
-  <button class="btn btn-primary">Perform Checkbox Action</button>
-</div>
-
-<div class="row">
-<button class="btn btn-success realtime-pbar">Realtime Progressbar</button>
-  <div class="progress">
-            <div id="bulk-action-progbar" class="progress-bar progress-bar-striped active" role="progressbar"
-          aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width:1%">           
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item text1" data-clipboard-action="copy" data-clipboard-target=".text1">
+                                
+                                    Copy this text into clipboard.
+                                
+                            </li>
+                            <li class="list-group-item text2" data-clipboard-action="copy" data-clipboard-target=".text2">                               
+                                    Some other text copy into clipboard.
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-</div>
-
-  <table class="table your-class">
-    <thead>
-      <tr>
-        <th><input type="checkbox" class="chk-toggle-all"></th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="checkbox" name="id[]" value="333"></td>
-        <td>Muhammad</td>
-        <td>Shahzad</td>
-        <td>shahzad@example.com</td>
-        <td><input type="text" name="amount" value="50" class="form-control"></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="id[]" value="555"></td>
-        <td>Amir</td>
-        <td>Shahzad</td>
-        <td>amir@example.com</td>
-        <td><input type="text" name="amount" value="80" class="form-control"></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="id[]" value="666"></td>
-        <td>Zahoor</td>
-        <td>Ahmed</td>
-        <td>zahoor@example.com</td>
-        <td><input type="text" name="amount" value="70" class="form-control"></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
 
+
+<script src="clipboard.min.js"></script>
 
 <script>
 
-$('.realtime-pbar').click(function(){
-  $('#bulk-action-progbar').data("aria-valuenow",1);
-  $('#bulk-action-progbar').css("width",'1%');
-  var percentComplete = 0;
-  $.ajax({
-    method: 'post',
-    url: 'yoururl',
-    data:{'name':'shahzad',email:'email@gmail.com'},
-    xhr: function(){
-        var xhr = new window.XMLHttpRequest();
-        //Upload progress
-        xhr.upload.addEventListener("progress", function(evt){
-          //console.log("in Upload progress");
-          console.log("Upload Done");
-        }, false);
-        //Download progress
-        xhr.addEventListener("progress", function(e){
-          console.log("in Download progress");
-          if (e.lengthComputable) {
-            //percentComplete = (e.loaded / e.total) * 100;
-            percentComplete = parseInt( (e.loaded / e.total * 100), 10);
-            console.log(percentComplete);
-            $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
-            $('#bulk-action-progbar').css("width",percentComplete+'%');
-
-          }
-          else{
-             console.log("Length not computable.");
-             console.log("If lengthComputable is false within the XMLHttpRequestProgressEvent, that means the server never sent a Content-Length header in the response.Solution for PHP: $startTime = time(); your code or sleep(10); $endTime = time() - $startTime; header('Content-Length: '.strlen($endTime)); now it will work")
-          }
-        }, false);
-        return xhr;
-    },
-    success: function (res) {
-        var obj = $.parseJSON(res);
-        console.log(obj)
-  }
-});
-});
+//Some cool console tricks
+console.info('Some Info:',  'Cool look');
+console.error('Some Action:', 'Cool Action');
 
 
-
-
-var dataArr = [];
-$('.btn-primary').click(function(){
-   var checkedCheckboxes = $('.your-class tr:visible :checkbox:checked');
-   console.log("Total Selected Checkboxes:",checkedCheckboxes.length);
-    var i = 0;
-    $.each(checkedCheckboxes, function(index, input){       
-      var id = input.value;        
-      dataArr[i] = {};
-      dataArr[i]['id'] = id;
-      console.log(dataArr[i]);
-      i++;  
-    });
-});
-
-$('.chk-toggle-all').click(function() {
-  //$('.your-class').find('input[type=checkbox]').prop('checked',false);
-  var checkedStatus = this.checked;
-  $('.your-class tbody tr:visible').find('td:first :checkbox')
-    .each(function() {
-      $(this).prop('checked', checkedStatus);
-    });
-});
-
-
+/*Search in table code start*/
 $("#searchText").on("keyup", function() {    
     var searchText = $(this).val().toLowerCase().trim();
     $(".your-class").find("tbody tr").each(function (index) {
@@ -183,6 +205,136 @@ $("#searchText").on("blur", function() {
         });
 });
 
+/*Search in table code end*/
+
+
+
+/*Realtime progress bar code start*/
+$('.realtime-pbar').click(function(){
+  $('#bulk-action-progbar').data("aria-valuenow",1);
+  $('#bulk-action-progbar').css("width",'1%');
+  var percentComplete = 0;
+  $.ajax({
+    method: 'post',
+    url: 'yoururl',
+    data:{'name':'shahzad',email:'email@gmail.com'},
+    xhr: function(){
+        var xhr = new window.XMLHttpRequest();
+        //Upload progress
+        xhr.upload.addEventListener("progress", function(evt){
+          //console.log("in Upload progress");
+          console.log("Upload Done");
+        }, false);
+        //Download progress
+        xhr.addEventListener("progress", function(e){
+          console.log("in Download progress");
+          if (e.lengthComputable) {
+            //percentComplete = (e.loaded / e.total) * 100;
+            percentComplete = parseInt( (e.loaded / e.total * 100), 10);
+            console.log(percentComplete);
+            $('#bulk-action-progbar').data("aria-valuenow",percentComplete);
+            $('#bulk-action-progbar').css("width",percentComplete+'%');
+
+          }
+          else{
+             console.log("Length not computable.");
+             console.log("If lengthComputable is false within the XMLHttpRequestProgressEvent, that means the server never sent a Content-Length header in the response.Solution for PHP: $startTime = time(); your code or sleep(10); $endTime = time() - $startTime; header('Content-Length: '.strlen($endTime)); now it will work")
+          }
+        }, false);
+        return xhr;
+    },
+    success: function (res) {
+        var obj = $.parseJSON(res);
+        console.log(obj)
+  }
+});
+});
+/*Realtime progress bar code end*/
+
+
+
+/*Select all checkboxes code start*/
+var dataArr = [];
+$('.btn-primary').click(function(){
+   var checkedCheckboxes = $('.your-class tr:visible :checkbox:checked');
+   console.log("Total Selected Checkboxes:",checkedCheckboxes.length);
+    var i = 0;
+    $.each(checkedCheckboxes, function(index, input){       
+      var id = input.value;        
+      dataArr[i] = {};
+      dataArr[i]['id'] = id;
+      console.log(dataArr[i]);
+      i++;  
+    });
+});
+
+$('.chk-toggle-all').click(function() {
+  //$('.your-class').find('input[type=checkbox]').prop('checked',false);
+  var checkedStatus = this.checked;
+  $('.your-class tbody tr:visible').find('td:first :checkbox')
+    .each(function() {
+      $(this).prop('checked', checkedStatus);
+    });
+});
+/*Select all checkboxes code end*/
+
+
+
+$(function(){
+
+
+  /*Hide and show div code start*/
+      $('.hide-element').click(function(){
+      $('.panel-info').animate({
+      },'1000').hide('slow');
+      $(".show-element").show('slow');
+    });
+
+    $('.show-element').click(function(){
+      $('.panel-info').animate({
+      },'1000').show('slow');
+      $(".show-element").hide('slow');
+    })
+
+  /*Hide and show div code end*/
+
+/*Copy to clipboard code start*/
+
+var clipboard = new Clipboard('.text1');
+  clipboard.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+    e.clearSelection();
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+  });
+
+
+/*var clipboard2 = new Clipboard('.text2');
+  clipboard2.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+    e.clearSelection();
+  });
+
+  clipboard2.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+  });*/
+
+
+  /*Copy to clipboard code end*/
+
+});
+
+
 </script>
-</body>
+
+
+    </body>
 </html>
