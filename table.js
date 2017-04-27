@@ -146,7 +146,7 @@ $(function(){
 
 /*Copy to clipboard code start*/
 
-var clipboard = new Clipboard('.text1');
+/*var clipboard = new Clipboard('.text1');
   clipboard.on('success', function(e) {
     console.info('Action:', e.action);
     console.info('Text:', e.text);
@@ -157,7 +157,7 @@ var clipboard = new Clipboard('.text1');
   clipboard.on('error', function(e) {
     console.error('Action:', e.action);
     console.error('Trigger:', e.trigger);
-  });
+  });*/
 
 
 /*var clipboard2 = new Clipboard('.text2');
@@ -175,5 +175,35 @@ var clipboard = new Clipboard('.text1');
 
 
   /*Copy to clipboard code end*/
+
+  /*Bootstrap Switch Buttons with jquery notify plugin start*/
+  $("[name='my-checkbox']").bootstrapSwitch();
+  $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', 
+      function(event, state) {
+        var beforeUpdateState = state;          
+          var item = $(this);
+          var id = item.data('id');
+          console.log(state);
+          //item.bootstrapSwitch(toggleState, true)
+
+          $.post('your-file.php',{id:id,status:state})
+          .done(function(res){
+            console.log('res',res);
+            if(res=='notupdated'){
+              item.bootstrapSwitch('toggleState', beforeUpdateState);
+               $.notify("Request not completed!", {
+                        className:'error',
+                        globalPosition: 'right middle'
+                  });
+            }else{
+              $.notify("Request completed successfully!", {
+                        className:'success',
+                        globalPosition: 'right middle'
+                  });
+            }
+          });
+  });
+  /*Bootstrap Switch Buttons with jquery notify plugin start*/
+
 
 });
