@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Jquery search in table
+        </title>
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+                <link href="css/bootstrap.min.css" rel="stylesheet">
+                <link href="css/jquery-ui.css" rel="stylesheet">
+                   
+<style>
+#sortable {
+    list-style-type: none;
+    margin: auto;
+    padding: 5px;
+    width: 70%;
+}
+
+#sortable li {
+    margin: 0 3px 3px 3px;
+    padding: 0.4em;
+    padding-left: 0.5em;
+    font-size: 1.4em;
+    height: 40px;
+}
+
+</style>
+               
+          
+    </head>
+    <body>
+        <div class="container">
+            <h2>
+                Jquery Sortable
+            </h2>
+           
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label for="searchText">Sorted Items:</label>
+                    <input class="form-control" id="sortedItems" name="sortedItems" type="text">
+                    </input>
+
+                    <button class="btn btn-primary" onclick="getSortedItems()">
+                    Get Sorted Items
+                    </button>
+
+                </div>
+
+                
+
+
+                 <div class="panel-group">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1" aria-expanded="true"></a>
+                        Sort Headers accordingly
+                      </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in" aria-expanded="true">
+                      <div class="panel-body">
+                            <ul id="sortable">
+                                  <li id="item1" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+                                  <li id="item2" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+                                  <li id="item3" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+                                  <li id="item4" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+                                  <li id="item5" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+                                  <li id="item6" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+                                  <li id="item7" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+                            </ul>
+                      </div>
+                      <div class="panel-footer">&nbsp;</div>
+                    </div>
+                  </div>
+                </div>    
+
+            </div>
+
+        </div>
+            
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+
+<script>
+ $( "#sortable" ).sortable({
+         change: function(event, ui) {
+            ui.placeholder.css({visibility: 'visible', border : '2px solid #3498db', width: '110$', 'border-right': '6px solid #3498db', 'border-left': '6px solid #3498db'});
+        },       
+        stop: function (event, ui) {
+            // ui.item.removeClass("ui-state-default");
+             ui.item.addClass("ui-state-highlight");
+        }
+    });
+
+ function getSortedItems(){
+    var sortedCsvHeaders = $( "#sortable" ).sortable( "toArray" );
+    $('#sortedItems').val(sortedCsvHeaders);
+ }
+
+</script>
+
+
+    </body>
+</html>
